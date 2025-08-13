@@ -1,0 +1,50 @@
+[database]
+host = "localhost"
+port = 5432
+database = "netoperator_qa"
+username = "postgres"
+password = "your_password"
+workspace_id = "netoperator_qa_workspace"
+
+[qdrant]
+host = "localhost"
+port = 6333
+collection_name = "netoperator_chunks"
+vector_size = 1024
+
+[openai]
+base_url = "http://localhost:8001/v1"
+api_key = "your-api-key"
+llm_model = "gpt-3.5-turbo"
+embedding_model = "text-embedding-ada-002"
+max_tokens = 2000
+temperature = 0.7
+
+[dataset]
+documents_path = "data/documents"
+qa_pairs_path = "data/qa_pairs/qa_pairs.json"
+workspace_id = "netoperator_qa_workspace"
+
+[processing]
+chunk_size = 500
+chunk_overlap = 50
+min_chunk_size = 100
+batch_size = 10
+max_workers = 4
+
+[indexing]
+entity_types = ["PERSON", "ORG", "LOCATION", "PRODUCT", "TECHNOLOGY", "EVENT", "CONCEPT"]
+relation_types = ["PART_OF", "LOCATED_IN", "WORKS_FOR", "RELATED_TO", "CAUSES", "USES"]
+max_entities_per_chunk = 20
+max_relations_per_chunk = 15
+confidence_threshold = 0.7
+
+[evaluation]
+top_k = 5
+sample_size = 100
+metrics = ["exact_match", "f1_score", "precision", "recall"]
+
+[logging]
+level = "INFO"
+format = "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+file = "logs/netoperator_qa.log"
